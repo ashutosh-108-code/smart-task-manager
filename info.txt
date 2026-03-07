@@ -1,0 +1,15 @@
+Smart Task Manager
+
+Problem it solves:
+
+People write tasks but don't track completion or priority.
+
+Features (must-have):
+
+· Add / edit / delete tasks
+
+· Priority levels (low/medium/high)
+. Due date
+
+. Completed vs pending view
+. Data saved in LocalStorage

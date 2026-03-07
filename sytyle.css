@@ -1,0 +1,64 @@
+.inputForm h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.inputForm {
+    /* outline: 2px solid; */
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputForm #addTaskForm {
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#addTaskForm input,
+select,
+textarea {
+    padding: 8px;
+    margin: 8px;
+    width: 70vw;
+    border: 2px solid;
+    border-radius: 10px;
+
+}
+
+.container button {
+    width: 15vw;
+    padding: 6px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.task {
+    /* border: 2px solid; */
+    padding: 20px;
+    padding: 5px;
+}
+.task .title{
+   font-size: x-large;
+}
+
+.task .Description {
+    padding-top: 10px;
+    padding-left: 30px;
+    height: 40px;
+    width: 90%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: grey;
+
+}
+.task .finishDate,.importance{
+    display: flex;
+    justify-content: flex-end;
+}

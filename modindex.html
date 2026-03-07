@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sytyle.css">
+</head>
+
+<body>
+    <div class="inputForm">
+        <h1>Add your task </h1>
+        <div class="container">
+            <form action="#" id="addTaskForm">
+                <label for="title">Title</label>
+                <input type="text" name="newTitle" id="title" placeholder="Add the title">
+                <label for="Description">Description</label>
+                <textarea type="text" name="newDescription" id="Description"
+                    placeholder="Add the Description"></textarea>
+                <label for="Deadline">deadline</label>
+                <input type="date" name="Deadline" id="Deadline">
+                <label for="Priority">Priority</label>
+                <select name="Priority" id="Priority">
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+                <button type="submit" class="submit_btn"> Add Task</button>
+            </form>
+        </div>
+    </div>
+    <div class="highPriorityTask">
+      
+    </div>
+
+    <div class="mediumPriorityTask">
+    </div>
+    <div class="lowPriorityTask">
+    </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
