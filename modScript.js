@@ -23,7 +23,7 @@ function createNewElements(ntask) {
     description.setAttribute("class", "Description")
     finishDate.setAttribute("class", "finishDate")
     importance.setAttribute("class", "importance")
-  
+
 
 
     //this code sets the context in the elements 
@@ -31,8 +31,8 @@ function createNewElements(ntask) {
     description.textContent = ntask.description
     finishDate.textContent = `Deadline: ${ntask.deadline}`
     importance.textContent = `Priority: ${ntask.priority}`
-      //this line of code appends elements into the div element
-  div.append(finishSatus, title, description, finishDate, importance);
+    //this line of code appends elements into the div element
+    div.append(finishSatus, title, description, finishDate, importance);
 
     //this code selects the Priority div
     const highPriorityTask = document.querySelector(".highPriorityTask");
@@ -40,13 +40,13 @@ function createNewElements(ntask) {
     const lowPriorityTask = document.querySelector(".lowPriorityTask");
 
 
-    if (ntask.priority== "High") {
+    if (ntask.priority == "High") {
         highPriorityTask.insertAdjacentElement("afterbegin", div)
     }
     else if (ntask.priority == "Low") {
         lowPriorityTask.insertAdjacentElement("afterbegin", div)
     }
-    else { 
+    else {
         mediumPriorityTask.insertAdjacentElement("afterbegin", div)
     }
 
@@ -82,25 +82,42 @@ function saveTask(ntask) {
 
 
 document.querySelector(".submit_btn").addEventListener("click", (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  //This collects the inputs given by the user
-  const Task = document.getElementById("title");
-  const TaskDescription = document.getElementById("Description");
-  const newdeadline = document.getElementById("Deadline");
-  const newpriority = document.getElementById("Priority");
+    //This collects the inputs given by the user
+    const Task = document.getElementById("title");
+    const TaskDescription = document.getElementById("Description");
+    const newdeadline = document.getElementById("Deadline");
+    const newpriority = document.getElementById("Priority");
 
-  const ntask={
-    newTask:Task.value,
-    description:TaskDescription.value,
-    deadline:newdeadline.value,
-    priority:newpriority.value
-  }
-   if (Task.value.trim() === "") {
-    alert("Task title cannot be empty");
-    return
-  }
-  createNewElements(ntask)
-  saveTask(ntask)
+    const ntask = {
+        newTask: Task.value,
+        description: TaskDescription.value,
+        deadline: newdeadline.value,
+        priority: newpriority.value
+    }
+    if (Task.value.trim() === "") {
+        alert("Task title cannot be empty");
+        return
+    }
+    createNewElements(ntask)
+    saveTask(ntask)
+    document.getElementById("addTaskForm").reset(); // resets the from upon submission
 
+})
+
+
+
+window.addEventListener("DOMContentLoaded", () => {//Takes data from local storage to display on screen on reload
+    const addExistingTask = JSON.parse(localStorage.getItem("addedTask"));
+    addExistingTask.forEach(e => {
+        const task = {
+            newTask: e.newtitle,
+            description: e.description,
+            deadline: e.deadline,
+            priority: e.newPriority
+        }
+        createNewElements(task)
+
+    });
 })
