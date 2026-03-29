@@ -11,7 +11,6 @@ function createNewElements(ntask) {
     const attrinbutes = {
         'class': 'ckackbox',
         'type': 'checkbox',
-        'id': 'finishStatus'
     }
     Object.entries(attrinbutes).forEach(([key, value]) => {
         finishSatus.setAttribute(key, value)
@@ -47,7 +46,7 @@ function createNewElements(ntask) {
     else if (ntask.priority == "Low") {
         lowPriorityTask.insertAdjacentElement("afterbegin", div)
     }
-    else {
+    else { 
         mediumPriorityTask.insertAdjacentElement("afterbegin", div)
     }
 
@@ -98,6 +97,7 @@ document.querySelector(".submit_btn").addEventListener("click", (e) => {
     priority:newpriority.value
   }
    if (Task.value.trim() === "") {
+    alert("Task title cannot be empty");
     return
   }
   createNewElements(ntask)
