@@ -1,3 +1,10 @@
+function setAttributes(element, attributes) {
+    Object.entries(attributes).forEach(([key, value]) => {
+        element.setAttribute(key, value)
+
+    })
+}
+
 function createNewElements(ntask) {
     //This creates elements that are to be added in the codebase
     const div = document.createElement("div");
@@ -6,30 +13,37 @@ function createNewElements(ntask) {
     const finishDate = document.createElement("span");
     const importance = document.createElement("span");
     const finishSatus = document.createElement("input")
-    const deleteTask = document.createElement("img")
+    const delete_Button = document.createElement("button")
+    const delete_Task_img = document.createElement("img")
+    const edit_Button = document.createElement("button")
+    const edit_task_img = document.createElement("img")
 
     //This is used to add attributes to the check box element Aka finishSatus
-    const attrinbutes = {
+    setAttributes(finishSatus, {
         'class': 'ckackbox',
         'type': 'checkbox',
-    }
-    Object.entries(attrinbutes).forEach(([key, value]) => {
-        finishSatus.setAttribute(key, value)
-
     })
-    const delTaskAttributes = {
-        'class': 'delete_btn',
+    setAttributes(delete_Task_img, {
         'src': 'icons/delete_btn.png',
         'alt': 'deleteIcon',
         'width': '18px',
+    })
+    setAttributes(delete_Button, {
+        'class': 'delete_btn',
         'data-id': `${ntask.taskId}`
-
-    }
-    Object.entries(delTaskAttributes).forEach(([key, value]) => {
-        deleteTask.setAttribute(key, value)
+    })
+    setAttributes(edit_Button,{
+        'class':'edit_btn',
+        'data-id':`${ntask.taskId}`
+    })
+    setAttributes(edit_task_img,{
+        'src':'icons/edit_icon.png',
+        'alt':'edit-icon',
+        'width':'18px'
     })
 
     //this code set attributes to the elements created
+
     div.setAttribute("class", "task");
     title.setAttribute("class", "title");
     description.setAttribute("class", "Description")
@@ -45,7 +59,9 @@ function createNewElements(ntask) {
     finishDate.textContent = `Deadline: ${ntask.deadline}`
     importance.textContent = `Priority: ${ntask.priority}`
     //this line of code appends elements into the div element
-    div.append(finishSatus, title, deleteTask, description, finishDate, importance);
+    delete_Button.append(delete_Task_img)
+    edit_Button.append(edit_task_img)
+    div.append(finishSatus, title, delete_Button,edit_Button, description, finishDate, importance);
 
     //this code selects the Priority div
     const highPriorityTask = document.querySelector(".highPriorityTask");
@@ -53,10 +69,10 @@ function createNewElements(ntask) {
     const lowPriorityTask = document.querySelector(".lowPriorityTask");
 
 
-    if (ntask.priority == "High") {
+    if (ntask.priority.toLowerCase == "high") {
         highPriorityTask.insertAdjacentElement("afterbegin", div)
     }
-    else if (ntask.priority == "Low") {
+    else if (ntask.priority.toLowerCase == "low") {
         lowPriorityTask.insertAdjacentElement("afterbegin", div)
     }
     else {
@@ -154,14 +170,45 @@ window.addEventListener("DOMContentLoaded", () => {//Takes data from local stora
     }
 })
 
-document.addEventListener("click", (e) => { // this code helps to delete an item from local storage 
-    if (e.target.classList.contains("delete_btn")) {
-        let num = e.target.closest(".task")
-        let id = e.target.dataset.id
+document.addEventListener("click", (e) => { // this code helps to delete an item from local storage  
+    const deletebtn = e.target.closest(".delete_btn")
+    if (deletebtn) {
+        let num = deletebtn.closest(".task")
+        let id = deletebtn.dataset.id
         num.remove()
         let existingData = JSON.parse(localStorage.getItem("addedTask"))
         const filteredData = existingData.filter(data => data.id !== id)
-        localStorage.setItem('addedTask',JSON.stringify(filteredData))
+        localStorage.setItem('addedTask', JSON.stringify(filteredData))
     }
 }
 )
+document.addEventListener("click",(e) => {
+    const editbtn = e.target.closest(".edit_btn")
+    if(editbtn){
+        let editTask = prompt("Enter the new task title")
+        let editdescrition  = prompt("Enter the new description")
+        let editDeadline = prompt("Enter the new Deadline in dd-mm-yyyy format")
+        let editpriority = prompt("Enter the new Priority")
+        let id = editbtn.dataset.id;
+        let existingData = JSON.parse(localStorage.getItem("addedTask"))
+        existingData.forEach((e) => {
+              if(e.id==id){
+                e.newtitle=editTask
+                e.description=editdescrition
+                e.deadline=editDeadline
+                e.newPriority=editpriority
+              }
+            }
+            )
+         localStorage.setItem('addedTask', JSON.stringify(existingData))    
+         
+    }
+  
+}
+)
+// let shi = prompt("name?")
+// let age = prompt("age?")
+// let clas = prompt("class?")
+// console.log(shi)
+// console.log(clas)
+// console.log(age)

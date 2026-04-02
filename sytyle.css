@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(165, 161, 161);
+}
 .inputForm h1 {
     display: flex;
     justify-content: center;
@@ -43,8 +46,9 @@ textarea {
     padding: 20px;
     padding: 5px;
 }
-.task .title{
-   font-size: x-large;
+
+.task .title {
+    font-size: x-large;
 }
 
 .task .Description {
@@ -58,10 +62,49 @@ textarea {
     color: grey;
 
 }
-.task .finishDate,.importance{
+
+.task .finishDate,
+.importance {
     display: flex;
     justify-content: flex-end;
 }
-.task .delete_btn{
- float: right;
+
+.task .edit_btn {
+    float: right;
+    margin-right: 10px;
+}
+
+.task .delete_btn {
+    margin-top: 2px;
+    float: right;
+}
+
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 35px;
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-button:hover {
+    background-color: #e56d6d;
+    box-shadow: 0 2px 6px rgb(196, 255, 20);
+    transform: translateY(-5px);
+}
+
+.icon-button:active {
+    transform: translateY(-9px);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.icon-button img {
+    width: 20px;
+    height: 20px;
 }
