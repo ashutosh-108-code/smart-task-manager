@@ -201,6 +201,10 @@ document.addEventListener("click",(e) => {
             }
             )
          localStorage.setItem('addedTask', JSON.stringify(existingData))    
+         editbtn.closest(".task").querySelector(".title").textContent= editTask
+         editbtn.closest(".task").querySelector(".Description").textContent= editdescrition
+         editbtn.closest(".task").querySelector(".finishDate").textContent= `Deadline: ${editDeadline}`
+         editbtn.closest(".task").querySelector(".importance").textContent=  `Priority: ${editpriority}`
          
     }
   
