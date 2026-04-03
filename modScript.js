@@ -32,14 +32,14 @@ function createNewElements(ntask) {
         'class': 'delete_btn',
         'data-id': `${ntask.taskId}`
     })
-    setAttributes(edit_Button,{
-        'class':'edit_btn',
-        'data-id':`${ntask.taskId}`
+    setAttributes(edit_Button, {
+        'class': 'edit_btn',
+        'data-id': `${ntask.taskId}`
     })
-    setAttributes(edit_task_img,{
-        'src':'icons/edit_icon.png',
-        'alt':'edit-icon',
-        'width':'18px'
+    setAttributes(edit_task_img, {
+        'src': 'icons/edit_icon.png',
+        'alt': 'edit-icon',
+        'width': '18px'
     })
 
     //this code set attributes to the elements created
@@ -61,7 +61,7 @@ function createNewElements(ntask) {
     //this line of code appends elements into the div element
     delete_Button.append(delete_Task_img)
     edit_Button.append(edit_task_img)
-    div.append(finishSatus, title, delete_Button,edit_Button, description, finishDate, importance);
+    div.append(finishSatus, title, delete_Button, edit_Button, description, finishDate, importance);
 
     //this code selects the Priority div
     const highPriorityTask = document.querySelector(".highPriorityTask");
@@ -180,39 +180,28 @@ document.addEventListener("click", (e) => { // this code helps to delete an item
         const filteredData = existingData.filter(data => data.id !== id)
         localStorage.setItem('addedTask', JSON.stringify(filteredData))
     }
-}
-)
-document.addEventListener("click",(e) => {
+})
+document.addEventListener("click", (e) => {
     const editbtn = e.target.closest(".edit_btn")
-    if(editbtn){
+    if (editbtn) {
         let editTask = prompt("Enter the new task title")
-        let editdescrition  = prompt("Enter the new description")
+        let editdescrition = prompt("Enter the new description")
         let editDeadline = prompt("Enter the new Deadline in dd-mm-yyyy format")
         let editpriority = prompt("Enter the new Priority")
         let id = editbtn.dataset.id;
         let existingData = JSON.parse(localStorage.getItem("addedTask"))
         existingData.forEach((e) => {
-              if(e.id==id){
-                e.newtitle=editTask
-                e.description=editdescrition
-                e.deadline=editDeadline
-                e.newPriority=editpriority
-              }
+            if (e.id == id) {
+                e.newtitle = editTask
+                e.description = editdescrition
+                e.deadline = editDeadline
+                e.newPriority = editpriority
             }
-            )
-         localStorage.setItem('addedTask', JSON.stringify(existingData))    
-         editbtn.closest(".task").querySelector(".title").textContent= editTask
-         editbtn.closest(".task").querySelector(".Description").textContent= editdescrition
-         editbtn.closest(".task").querySelector(".finishDate").textContent= `Deadline: ${editDeadline}`
-         editbtn.closest(".task").querySelector(".importance").textContent=  `Priority: ${editpriority}`
-         
+        })
+        localStorage.setItem('addedTask', JSON.stringify(existingData))
+        editbtn.closest(".task").querySelector(".title").textContent = editTask
+        editbtn.closest(".task").querySelector(".Description").textContent = editdescrition
+        editbtn.closest(".task").querySelector(".finishDate").textContent = `Deadline: ${editDeadline}`
+        editbtn.closest(".task").querySelector(".importance").textContent = `Priority: ${editpriority}`
     }
-  
-}
-)
-// let shi = prompt("name?")
-// let age = prompt("age?")
-// let clas = prompt("class?")
-// console.log(shi)
-// console.log(clas)
-// console.log(age)
+})
